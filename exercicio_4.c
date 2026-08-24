@@ -2,7 +2,7 @@
 // RA: 26892562
 
 #include <stdio.h>
-#include <Math.h>
+#include <math.h>
 
 int main() {
     float x1 = 0, x2 = 0, y1 = 0, y2 = 0;
