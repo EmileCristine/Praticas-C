@@ -1,3 +1,8 @@
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
 {
   int h1, h2, m1, m2;
   
@@ -10,19 +15,45 @@
   } else {
     printf("Digite o segundo horario no seguinte formato: HH:MM\n");
     scanf("%d:%d", &h2, &m2);
-    
+  } 
     if (h2<0 || h2>23 || m2<0 || m2>59) {
       printf("Horário inválido, tente novamente!\n");
       scanf("%d:%d", &h2, &m2);    
-    } else {
-      if (m1 > m2) {
-        m1 = 60 - m1;
-      }
-    }
   }
   
-  int interH = h2 - h1;
-  int interM = m2 - m1;
+  h1= (h1 * 60) + m1;
+  h2 = (h2 * 60) + m2;
   
-  printf("O intervalo entre os horarios eh: %d:%d\n", interH, interM);
+  int intervalo = h2 - h1;
+  
+  int interH = intervalo/60;
+  int interM = intervalo%60;
+
+    const char* uniMedida;
+    // direfente de char uniMedida, essa declaração permitirá guardar mais de 1 caractere
+    // char* significa exatamente "ponteiro para caractere" (character pointer). 
+    // em vez de guardar uma letra ou um texto diretamente, guarda o endereço de memória onde
+    // a primeira letra do texto está guardada.
+
+    switch (interH) {
+        case 0: 
+            if (interM == 1) {
+                uniMedida = "minuto";
+            } else {
+                uniMedida = "minutos";
+            }
+            break;
+            
+        case 1: 
+            uniMedida = "hora";
+            break;
+            
+        default:
+            uniMedida = "horas";
+            break;
+    }
+
+  printf("O intervalo entre os horarios eh: %d minuto(s)\n", intervalo);
+  printf("%02d:%02d %s\n", interH, interM, uniMedida);
+  return 0;
 }
