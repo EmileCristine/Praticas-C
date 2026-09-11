@@ -41,7 +41,7 @@ int main() {
     // O mínimo de substituições é o total de ferraduras (4) menos as que já são únicas
     int substituicoes = 4 - i;
 
-    printf("Numero minimo de ferraduras a substituir: %d\n", substituicoes);
+    printf("Numero minimo de ferraduras para substituir: %d\n", substituicoes);
 
     return EXIT_SUCCESS;
 }
