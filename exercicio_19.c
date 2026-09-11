@@ -27,5 +27,5 @@ int main () {
         printf("%d Nao pode ser dado pela soma de 2 numeros pares.\n", w);
     }
 
-    return EXIT_FAILURE;
+    return EXIT_SUCCESS;
 }
