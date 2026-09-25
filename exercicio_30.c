@@ -14,7 +14,7 @@ int main () {
   // primeiros precisa-se descobri o tamanho de a para saber quantos dígitos isolar em b
   // sendo assim, se a = 23, divisor_a vai virar 100
  new_a = a;
-  while (temp_a > 0) {
+  while (new_a > 0) {
     divisor_a *= 10;
     new_a /= 10;
   }

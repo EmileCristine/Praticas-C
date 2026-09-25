@@ -11,7 +11,7 @@ int main()
 {
     int n, // numero dado pelo user
     inv_n, // o numero invertido
-    dig, // guarda os digitos
+    dig; // guarda os digitos
   
     printf("Digite o numero: ");
     scanf("%d", &n);
