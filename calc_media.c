@@ -29,10 +29,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-float calc_Mp (float p1, float p2) {
+float calc_Mp () {
+    float p1, p2;
     if(p1 > 10 || p2 > 10 || p1 < 0 || p2 < 0) {
         printf("Nenhuma nota pode ser maior que 10 ou ser negativa. ");
-        return EXIT_FAILLURE;
+        return EXIT_FAILURE;
     }
     return (p1 + (2 * p2)) / 3;
 }
@@ -56,14 +57,14 @@ float calc_Me () {
 
     printf("Digite a quantidade de desafios entregues fora do prazo (6pts): \n");
 
-    Me = ((ex_2pts + ex_1pt + ex_12pts + ex_6pts) * 100) / qtd_ex;
+    float Me = ((ex_2pts + ex_1pt + ex_12pts + ex_6pts) * 100) / qtd_ex;
 }
 
-float calc_Mf (float Mp, float Me) {
+float calc_Mf () {
+    float Mp, Me;
     return (2 * Mp * Me) / Mp + Me;
 }
 
-float calcular mp_necessario (float Mp);
 
 int main () {
     float p1, p2, Me, Mf, Mp;
