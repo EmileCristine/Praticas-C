@@ -13,6 +13,28 @@ float calc_Mp (float p1, float p2) {
     return (p1 + (2 * p2)) / 3;
 }
 
+float calc_Me () {
+    int qtd_ex, ex_2pts, ex_1pt, ex_12pts, ex_6pts;
+
+    printf("--- Parcial dos Exercícios ---");
+
+    printf("Digite a quantidade total de exercicios considerando os testes de mesa: \n");
+    scanf("%d", qtd_ex);
+
+    printf("Digite a quantidade de exercicios entregues no prazo (2pts): \n");
+    scanf("%d", &ex_2pts);
+
+    printf("Digite a quantidade de exercicios entregues fora do prazo (1pt): \n");
+    scanf("%d", &ex_1pt);
+
+    printf("Digite a quantidade de desafios entregues no prazo (12pts): \n");
+    scanf("%d", &ex_12pts);
+
+    printf("Digite a quantidade de desafios entregues fora do prazo (6pts): \n");
+
+    Me = ((ex_2pts + ex_1pt + ex_12pts + ex_6pts) * 100) / qtd_ex;
+}
+
 float calcular mp_necessario (float Mp);
 
 int main () {
@@ -37,33 +59,42 @@ int main () {
     // 1 = 50
     // 0.5 = 25%
 
-    int ex_2pts, ex_1pt, ex_0pts;
+    printf("=== Escolha a opção para descobrir sua média final ;) ===\n Basta digitar o numero da opcao.");
 
-    printf("--- Parcial dos Exercícios ---");
-    printf("Digite a quantidade de exercicios entregues no prazo (10pts): \n");
-    scanf("%d", &ex_10pts);
+    printf("1. Calcular media Parcial dos Exercicios");
+    printf("2. Calcular media das provas")
 
-    printf("Digite a quantidade de exercicios entregues fora do prazo (5pts): \n");
-    scanf("%d", &ex_5pts);
+    switch (opc) {
+        case 1:
+            calc_Mp();
+            break;
+        case 2:
+            calc_Me();
+            break;
+        default:
+            break;
+    }
 
-    printf("Digite a quantidade de exercicios entregues no prazo (10pts): \n");
-    scanf("%d", &ex_0pts);
+
+
+
 
 
     // isso calcula apenas a media final
-    printf("Nota p1: \nNota p2: \nNota exercicios: \n");
-    scanf("%f %f %f", &p1, &p2, &Me);
+    printf("Digite a nota da P1 e P2: \n");
+    scanf("%f %f", &p1, &p2);
 
-    if(p1 > 10 || p2 > 10 || Me > 10 || p1 < 0 || p2 < 0 || Me < 0) {
+    if(p1 > 10 || p2 > 10 || p1 < 0 || p2 < 0) {
         printf("Nenhuma nota pode ser maior que 10 ou ser negativa. ");
         return 0;
     }
 
-    Mp = (p1 + (2 * p2)) / 3;
-
+    Mp = calc_Mp(p1, p2);
     Mf = (2.0 * Mp * Me) / (Mp + Me);
 
-    printf("Media Final: %.2f", Mf);
+    printf("Media dos exercicios %.2f\n", Me);
+    printf("Media das provas %.2f\n", Mp);
+    printf("Media Final: %.2f\n", Mf);
 
     return 0;
 }
