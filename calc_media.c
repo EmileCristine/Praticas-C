@@ -14,6 +14,18 @@
 #include <locale.h>
 //#include <windows.h>
 
+#define RESET   "\x1b[0m"
+#define NEGRITO "\x1b[1m"
+
+// Cores de texto
+#define VERMELHO "\x1b[31m"
+#define VERDE    "\x1b[32m"
+#define AMARELO  "\x1b[33m"
+#define AZUL     "\x1b[34m"
+#define ROXO     "\x1b[35m"
+#define CIANO    "\x1b[36m"
+
+
 float calc_Mp()
 {
     float p1, p2, Mp;
@@ -37,7 +49,7 @@ float calc_Me()
     float qtd_ex, ex_2pts, ex_1pt, ex_12pts, ex_6pts, hasChallenge;
     float sum_notas;
 
-    printf("--- Parcial dos Exercícios ---\n\n");
+    printf( "ROXO" "PARCIAL DOS EXERCÍCIOS" RESET "\n\n");
 
     printf("Digite a quantidade TOTAL de exercícios considerando os testes de mesa (e os não entregues): ");
     scanf("%f", &qtd_ex);
@@ -82,26 +94,43 @@ int main()
 
     do
     {
-        printf("\n=== Notas calculadas ===\n");
-        if (temp_Me)
-            printf("Me = %.2f\n", Me);
-        if (temp_Mp)
-            printf("Mp = %.2f\n", Mp);
-        if (temp_Mf)
-            printf("Mf = %.2f\n", Mf);
-        if (!temp_Me && !temp_Mp && !temp_Mf)
-            printf("Nenhuma nota calculada ainda.\n");
+        printf("┌───────────────────────────────────────┐\n");
+        printf("│ " ROXO "CATEGORIA" RESET "            | NOTA           │\n");
+        printf("├───────────────────────────────────────┤\n");
 
-        printf("\n\n=== Escolha a opção para descobrir sua média final ;) ===\n Basta digitar o número da opção.\n\n");
+        if (temp_Me)
+            printf("│ " AZUL "Média Exercicios (ME)" RESET " | %.2f          │\n", Me);
+        if (temp_Mp)
+            printf("│ " AZUL "Média Provas (Mp)" RESET "     | %.2f         │\n", Mp);
+        if (temp_Mf)
+            printf("│ " AZUL "Média Final (Mf)" RESET "      | %.2f          │\n", Mf);
+
+        if (!temp_Me && !temp_Mp && !temp_Mf)
+            printf("│ Nenhuma nota calculada ainda...       │\n");
+
+        printf("└───────────────────────────────────────┘\n");
+
+        // if (temp_Me)
+        //     printf("Me = %.2f\n", Me);
+        // if (temp_Mp)
+        //     printf("Mp = %.2f\n", Mp);
+        // if (temp_Mf)
+        //     printf("Mf = %.2f\n", Mf);
+        // if (!temp_Me && !temp_Mp && !temp_Mf)
+        //     printf("Nenhuma nota calculada ainda.\n");
+
+        printf("\n\n" ROXO "CALCULO DE MÉDIA FINAL " RESET "\n Basta digitar o número da opção.\n\n");
+
 
         printf("1. Calcular média Parcial dos Exercícios\n");
         printf("2. Calcular média das provas\n");
         printf("3. Calcular média final (estimativa)\n\n");
 
-        printf("=== Calculo de nota necessária ===\n\n");
+        printf("" ROXO "CALCULO DE NOTA NECESSÁRIA " RESET "\nBasta digitar o número da opção e cumprir os requisitos.\n\n");
+        printf("Para saber quanto precisa tirar em cada item avaliativo para atingir média >= 5, você precisa ter a nota de pelo menos um item avaliativo.\n\n");
 
-        printf("4. P2 necessária (saber quanto precisa tirar na P2 para atingir média >= 5 | Requisito: Saber nota da P1 e Média dos exercícios\n");
-        printf("5. Média exercícios necessarios (saber qual nota precisa ter nos exercícios para atingir média >= 5 | Requisito: Saber nota da P1 e P2\n");
+        printf("4. Nota necessária na P2 "AMARELO"Requisito: "RESET"Saber nota da P1 e Média dos exercícios\n");
+        printf("5. Nota necessária nos exercícios "AMARELO"Requisito: "RESET" Saber nota da P1 e P2\n");
         printf("6. Mínimo possível (qual a média minima em cada item avaliativo.\n");
         printf("7. Nota mínima na recuperacao para fechar com média 5\n");
         printf("0. Sair\n\n");
@@ -156,3 +185,4 @@ int main()
 
     return EXIT_SUCCESS;
 }
+
