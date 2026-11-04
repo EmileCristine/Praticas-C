@@ -46,7 +46,7 @@ float calc_Mp()
 
 float calc_Me()
 {
-    float qtd_ex, ex_2pts, ex_1pt, ex_12pts, ex_6pts, hasChallenge;
+    float qtd_ex, ex_2pts, ex_1pt, ex_2pt, ex_12pts, ex_6pts, hasChallenge;
     float sum_notas;
 
     printf( "ROXO" "PARCIAL DOS EXERCÍCIOS" RESET "\n\n");
@@ -60,8 +60,12 @@ float calc_Me()
     printf("Digite a quantidade de exercícios ENTREGUES FORA do prazo (1pt): ");
     scanf("%f", &ex_1pt);
 
+    prinft("Digite a quantidade de exercicios feitos em sala (2pt)");
+    scanf("%f, &ex_2pt");
+
     printf("Já houveram desafios realizados? Digite 1 para sim ou 0 para não: ");
     scanf("%f", &hasChallenge);
+
 
     if (hasChallenge == 1)
     {
