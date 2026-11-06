@@ -1,29 +1,32 @@
 // Escreva um programa que, dado um vetor v de n números inteiros, reorganize seus elementos de modo que todos os números negativos apareçam 
 // antes dos positivos, mantendo a ordem relativa entre os elementos de cada grupo.
+
 #include <stdio.h>
 
-void trocar(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
+void separar_negativos(int v[], int n) {
+    // Vetor auxiliar para guardar o resultado temporariamente
+    int aux[n];
+    int posAux = 0;
 
-void separarNegativos(int v[], int n) {
-    for(int j = 0; j < n; j++) {
-        int trocas = 0;
+    // copia todos os números negativos na ordem em que aparecem
+    for (int i = 0; i < n; i++) {
+        if (v[i] < 0) {
+            aux[posAux] = v[i];
+            posAux++;
+        }
+    }
 
-        for(int i = 0; i < n - 1; i++) {
-            // Se o atual for positivo (ou zero) E o próximo for negativo, eles trocam.
-            // Isso joga os negativos para a esquerda sem mudar a ordem entre eles.
-            if(v[i] >= 0 && v[i+1] < 0) {
-                trocar(&v[i], &v[i+1]);
-                trocas++;
-            }
+    // copia todos os números positivos (e o zero) na ordem original
+    for (int i = 0; i < n; i++) {
+        if (v[i] >= 0) {
+            aux[posAux] = v[i];
+            posAux++;
         }
-        
-        if (trocas == 0) {
-            break;
-        }
+    }
+
+    // copia os elementos de volta do vetor auxiliar para o vetor original v[]
+    for (int i = 0; i < n; i++) {
+        v[i] = aux[i];
     }
 }
 
@@ -31,7 +34,13 @@ int main() {
     int vetor[] = {1, -2, 3, -1, 5, -3, 0};
     int n = sizeof(vetor) / sizeof(vetor[0]);
 
-    separarNegativos(vetor, n);
+    printf("Vetor original:   ");
+    for(int i = 0; i < n; i++) {
+        printf("%d ", vetor[i]);
+    }
+    printf("\n");
+
+    separar_negativos(vetor, n);
 
     printf("Vetor organizado: ");
     for(int i = 0; i < n; i++) {
