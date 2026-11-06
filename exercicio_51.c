@@ -43,7 +43,7 @@ int main() {
     int *v = malloc(n * sizeof(int));
 
 
-    ler(v);
+    ler(v, n);
 
     printf("Vetor original:   ");
     for(int i = 0; i < n; i++) {
@@ -51,7 +51,7 @@ int main() {
     }
     printf("\n");
 
-    ordenar(v, num);
+    ordenar(v, n);
 
     printf("Vetor em ordem: ");
     for(int i = 0; i < n; i++) {
