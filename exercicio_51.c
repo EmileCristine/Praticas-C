@@ -2,36 +2,24 @@
 // Escreva um programa que, dado um vetor de números inteiros, verifique se o vetor é um palíndromo, ou seja, se ele pode ser lido da mesma forma da esquerda
 // para a direita e da direita para a esquerda.
 
-
 #include <stdio.h>
 #include <stdlib.h>
 
-void separar_negativos(int v[], int n) {
-    // vetor auxiliar para guardar o resultado temporariamente
-    int aux[n]; // vetor auxiliar
-    int posAux = 0; // posicao auxiliar
+void trocar(int *x, int *y){
+    int c = *x;
+    *x = *y;
+    *y = c;
+}
 
-    // copia todos os números negativos na ordem em que aparecem
-    for (int i = 0; i < n; i++) {
-        if (v[i] < 0) {
-            aux[posAux] = v[i];
-            posAux++;
+void ordenar(int v[], int n){
+    for (int i = 1; i < n; i++){
+        for(int j = i; j > 0 && v[j] < v[j - 1]; j--){
+            trocar(&v[i], &v[j]);
         }
-    }
-
-    // copia todos os números positivos (e o zero) na ordem original
-    for (int i = 0; i < n; i++) {
-        if (v[i] >= 0) {
-            aux[posAux] = v[i];
-            posAux++;
-        }
-    }
-
-    // copia os elementos de volta do vetor auxiliar para o vetor original v[]
-    for (int i = 0; i < n; i++) {
-        v[i] = aux[i];
     }
 }
+
+
 
 void imprimir(int v[], int n) {
     for (int i = 0; i < n; i++) {
@@ -53,7 +41,7 @@ int main() {
     scanf("%d", &n);
 
     int *v = malloc(n * sizeof(int));
-    int num = sizeof(v) / sizeof(v[0]);
+
 
     ler(v);
 
@@ -63,7 +51,7 @@ int main() {
     }
     printf("\n");
 
-    separar_negativos(v, num);
+    ordenar(v, num);
 
     printf("Vetor em ordem: ");
     for(int i = 0; i < n; i++) {
@@ -71,8 +59,7 @@ int main() {
     }
     printf("\n");
 
-        free(v);
-
+    free(v);
 
     return 0;
 }
