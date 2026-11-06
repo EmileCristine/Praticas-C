@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int buscar(int v[], int n, int valor){ // funcao de busca linear (passa por todo o vetor)
+int buscar(int v[], int n, int valor){ 
     for (int i = 0; i < n; i++){
-        if (*(v + i) == valor){ // aponta para o proximo end. do vetor
+        if (*(v + i) == valor){ 
             return i;
         }
     }
@@ -25,6 +25,37 @@ void imprime(int v[], int n){
     printf("\n");   
 }
 
+int remove(int v[], int n) {
+    int novoTamanho = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (buscar(v, novoTamanho, v[i]) == -1) {
+            v[novoTamanho] = v[i];
+            novoTamanho++;
+        }
+    }
+    
+    return novoTamanho; 
+}
+
 int main() {
+    int n;
+
+    printf("Digite o tamanho do vetor: ");
+    scanf("%d", &n);
+
+    int vetor[n]; 
+
+    ler(vetor, n);
+
+    printf("\nVetor original:\n");
+    imprime(vetor, n);
+
+    int novoTamanho = removerDuplicatas(vetor, n);
+
+    printf("\nVetor novo:\n");
+    imprime(vetor, novoTamanho);
+
     return EXIT_SUCCESS;
 }
+
