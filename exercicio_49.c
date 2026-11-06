@@ -15,10 +15,10 @@ void ler(int v[], int n) {
     }
 }
 
-// retorna a qtdd. de elementos comuns.
+// retorna a qtd de elementos comuns
 // O vetor resultado[] foi criado na main e é preenchido aqui
 int comparar(int v[], int w[], int resultado[], int n) {
-    int k = 0; // Contador de elementos em comum
+    int k = 0; // Contar elementos em comum
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
@@ -37,7 +37,7 @@ int comparar(int v[], int w[], int resultado[], int n) {
                     resultado[k] = v[i];
                     k++;
                 }
-                break; // Achou o par, pula para o próximo elemento de V
+                break; //  pula para o próximo elemento de V toda vez q acha o par
             }
         }
     }
