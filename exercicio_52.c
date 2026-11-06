@@ -3,8 +3,21 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+void ler(int v[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("Digite o valor do elemento %d: ", i);
+        scanf("%d", &v[i]);
+    }
+}
+
+void imprimir(int v[], int n){
+    for(int *i = v; i < v + n; i++)
+        printf("%d ", *i);
+    printf("\n");   
+}
+
 //  verifica se o vetor é um palíndromo
-bool ehPalindromo(int v[], int n) {
+int ehPalindromo(int v[], int n) {
     int inicio = 0;
     int fim = n - 1;
 
@@ -17,7 +30,7 @@ bool ehPalindromo(int v[], int n) {
         fim--;    // vai da direita para o centro
     }
     
-    return true; // caso o loop terminar sem diferenças é palíndromo
+    return 1; // caso o loop terminar sem diferenças é palíndromo
 }
 
 int main() {
