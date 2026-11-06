@@ -1,37 +1,9 @@
-// Escreva um programa que, dado um vetor v de n números inteiros, reorganize seus elementos de modo que todos os números negativos apareçam 
-// antes dos positivos, mantendo a ordem relativa entre os elementos de cada grupo.
 
-// Escreva um programa que, dado um vetor v de n números inteiros, reorganize seus elementos de modo que todos os números negativos apareçam 
-// antes dos positivos, mantendo a ordem relativa entre os elementos de cada grupo.
+// Escreva um programa que, dado um vetor de números inteiros, verifique se o vetor é um palíndromo, ou seja, se ele pode ser lido da mesma forma da esquerda
+// para a direita e da direita para a esquerda.
 
 #include <stdio.h>
-
-void separar_negativos(int v[], int n) {
-    // vetor auxiliar para guardar o resultado temporariamente
-    int aux[n]; // vetor auxiliar
-    int posAux = 0; // posicao auxiliar
-
-    // copia todos os números negativos na ordem em que aparecem
-    for (int i = 0; i < n; i++) {
-        if (v[i] < 0) {
-            aux[posAux] = v[i];
-            posAux++;
-        }
-    }
-
-    // copia todos os números positivos (e o zero) na ordem original
-    for (int i = 0; i < n; i++) {
-        if (v[i] >= 0) {
-            aux[posAux] = v[i];
-            posAux++;
-        }
-    }
-
-    // copia os elementos de volta do vetor auxiliar para o vetor original v[]
-    for (int i = 0; i < n; i++) {
-        v[i] = aux[i];
-    }
-}
+#include <stdbool.h>
 
 void imprimir(int v[], int n) {
     for (int i = 0; i < n; i++) {
@@ -46,30 +18,32 @@ void ler(int v[], int n) {
     }
 }
 
+//  verifica se o vetor é um palíndromo
+int ehPalindromo(int v[], int n) {
+    int inicio = 0;
+    int fim = n - 1;
+
+    while (inicio < fim) {
+        // ao encontrar qualquer diferença indica que não é palíndromo
+        if (v[inicio] != v[fim]) {
+            return false; 
+        }
+        inicio++; // vai da esquerda para o centro
+        fim--;    // vai da direita para o centro
+    }
+    
+    return 1; // caso o loop terminar sem diferenças é palíndromo
+}
+
 int main() {
-    int n = 0;
-
-    printf("Digite o tamanho do vetor (qtd. indices): ");
-    scanf("%d", &n);
-
-
-    int num = sizeof(v) / sizeof(v[0]);
-
     int *v = malloc(n * sizeof(int));
+    int n1 = sizeof(v) / sizeof(v[0]);
 
-    printf("Vetor original:   ");
-    for(int i = 0; i < n; i++) {
-        printf("%d ", v[i]);
+    if (ehPalindromo(v, n1)) {
+        printf("eh um palíndromo.\n");
+    } else {
+        printf("nao eh é um palíndromo.\n");
     }
-    printf("\n");
-
-    separar_negativos(v, num);
-
-    printf("Vetor em ordem: ");
-    for(int i = 0; i < n; i++) {
-        printf("%d ", v[i]);
-    }
-    printf("\n");
 
     return 0;
 }
