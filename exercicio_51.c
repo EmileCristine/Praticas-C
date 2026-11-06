@@ -52,10 +52,8 @@ int main() {
     printf("Digite o tamanho do vetor (qtd. indices): ");
     scanf("%d", &n);
 
-
-    int num = sizeof(v) / sizeof(v[0]);
-
     int *v = malloc(n * sizeof(int));
+    int num = sizeof(v) / sizeof(v[0]);
 
     printf("Vetor original:   ");
     for(int i = 0; i < n; i++) {
