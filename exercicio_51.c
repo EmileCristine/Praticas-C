@@ -4,9 +4,9 @@
 #include <stdio.h>
 
 void separar_negativos(int v[], int n) {
-    // Vetor auxiliar para guardar o resultado temporariamente
-    int aux[n];
-    int posAux = 0;
+    // vetor auxiliar para guardar o resultado temporariamente
+    int aux[n]; // vetor auxiliar
+    int posAux = 0; // posicao auxiliar
 
     // copia todos os números negativos na ordem em que aparecem
     for (int i = 0; i < n; i++) {
