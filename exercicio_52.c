@@ -1,10 +1,5 @@
 // Escreva um programa que, dado um vetor de números inteiros, verifique se o vetor é um palíndromo, ou seja, se ele pode ser lido da mesma forma da esquerda
 // para a direita e da direita para a esquerda.
-// Escreva um programa que, dado um vetor v de n números inteiros, reorganize seus elementos de modo que todos os números negativos apareçam 
-// antes dos positivos, mantendo a ordem relativa entre os elementos de cada grupo.
-
-// Escreva um programa que, dado um vetor de números inteiros, verifique se o vetor é um palíndromo, ou seja, se ele pode ser lido da mesma forma da esquerda
-// para a direita e da direita para a esquerda.
 
 #include <stdio.h>
 #include <stdbool.h>
