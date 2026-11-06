@@ -24,7 +24,7 @@ void imprime(int v[], int n){
         printf("%d ", *i);
     printf("\n");   
 }
-
+// le o vetor e passa o numero no indice que for igual ao outro para o fim e depois remove 1 indice no fim a cada iteração
 int remove(int v[], int n) {
     int novoTamanho = 0;
 
@@ -36,6 +36,17 @@ int remove(int v[], int n) {
     }
     
     return novoTamanho; 
+}
+
+int remover_iguais(int v[]), int n {
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < n; j++)
+            if(v[i] == v[j])
+                for(int k = j + 1; k < n; k++)
+                    v[k -1] = v[k];
+                    i--;
+                    j--;
+
 }
 
 int main() {
@@ -51,7 +62,7 @@ int main() {
     printf("\nVetor original:\n");
     imprime(vetor, n);
 
-    int novoTamanho = removerDuplicatas(vetor, n);
+    int novoTamanho = remover_iguais(vetor, n);
 
     printf("\nVetor novo:\n");
     imprime(vetor, novoTamanho);
