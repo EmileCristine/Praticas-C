@@ -13,13 +13,11 @@ void trocar(int *x, int *y){
 
 void ordenar(int v[], int n){
     for (int i = 1; i < n; i++){
-        for(int j = i; j > 0 && v[j] < v[j - 1]; j--){
+        for(int j = i; j > 0 && v[j] <0 && v[j - 1] >=0; j--){
             trocar(&v[i], &v[j]);
         }
     }
 }
-
-
 
 void imprimir(int v[], int n) {
     for (int i = 0; i < n; i++) {
@@ -61,5 +59,5 @@ int main() {
 
     free(v);
 
-    return 0;
+    return EXIT_SUCESS;
 }
