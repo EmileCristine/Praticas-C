@@ -25,3 +25,6 @@ void imprime(int v[], int n){
     printf("\n");   
 }
 
+int main() {
+    return EXIT_SUCCESS;
+}
