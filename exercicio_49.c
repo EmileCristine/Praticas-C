@@ -1,5 +1,6 @@
 // Escreva um programa que, dados dois vetores v e w de n números inteiros, determine os elementos que aparecem em ambos os vetores.
 
+// Escreva um programa que, dados dois vetores v e w de n números inteiros, determine os elementos que aparecem em ambos os vetores.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,8 +12,8 @@ void imprimir(int v[], int n) {
 }
 
 void ler(int v[], int n) {
+    printf("Digite os numeros do vetor: ");
     for (int i = 0; i < n; i++) {
-        printf("Digite o valor do elemento %d: ", i);
         scanf("%d", &v[i]);
     }
 }
@@ -61,6 +62,8 @@ int main() {
     int *new_vetor = malloc(n * sizeof(int));
 
     printf("\n--- Vetor V ---\n");
+    printf("Digite o valor do elemento %d: ", i);
+
     ler(v, n);
 
     printf("\n--- Vetor W ---\n");
