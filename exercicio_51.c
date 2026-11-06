@@ -1,6 +1,9 @@
 // Escreva um programa que, dado um vetor v de n números inteiros, reorganize seus elementos de modo que todos os números negativos apareçam 
 // antes dos positivos, mantendo a ordem relativa entre os elementos de cada grupo.
 
+// Escreva um programa que, dado um vetor v de n números inteiros, reorganize seus elementos de modo que todos os números negativos apareçam 
+// antes dos positivos, mantendo a ordem relativa entre os elementos de cada grupo.
+
 #include <stdio.h>
 
 void separar_negativos(int v[], int n) {
@@ -30,21 +33,41 @@ void separar_negativos(int v[], int n) {
     }
 }
 
+void imprimir(int v[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", v[i]);
+    }
+}
+
+void ler(int v[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("Digite o valor do elemento %d: ", i);
+        scanf("%d", &v[i]);
+    }
+}
+
 int main() {
-    int vetor[] = {1, -2, 3, -1, 5, -3, 0};
-    int n = sizeof(vetor) / sizeof(vetor[0]);
+    int n = 0;
+
+    printf("Digite o tamanho do vetor (qtd. indices): ");
+    scanf("%d", &n);
+
+
+    int num = sizeof(v) / sizeof(v[0]);
+
+    int *v = malloc(n * sizeof(int));
 
     printf("Vetor original:   ");
     for(int i = 0; i < n; i++) {
-        printf("%d ", vetor[i]);
+        printf("%d ", v[i]);
     }
     printf("\n");
 
-    separar_negativos(vetor, n);
+    separar_negativos(v, num);
 
     printf("Vetor em ordem: ");
     for(int i = 0; i < n; i++) {
-        printf("%d ", vetor[i]);
+        printf("%d ", v[i]);
     }
     printf("\n");
 
