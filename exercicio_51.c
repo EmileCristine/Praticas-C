@@ -55,6 +55,8 @@ int main() {
     int *v = malloc(n * sizeof(int));
     int num = sizeof(v) / sizeof(v[0]);
 
+    ler(v);
+
     printf("Vetor original:   ");
     for(int i = 0; i < n; i++) {
         printf("%d ", v[i]);
