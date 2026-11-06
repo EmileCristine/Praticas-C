@@ -12,6 +12,13 @@ int buscar(int v[], int n, int valor){ // funcao de busca linear (passa por todo
     return -1;
 }
 
+void ler(int v[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("Digite o valor do elemento %d: ", i);
+        scanf("%d", &v[i]);
+    }
+}
+
 void imprime(int v[], int n){
     for(int *i = v; i < v + n; i++)
         printf("%d ", *i);
