@@ -42,7 +42,7 @@ int main() {
 
     separar_negativos(vetor, n);
 
-    printf("Vetor organizado: ");
+    printf("Vetor em ordem: ");
     for(int i = 0; i < n; i++) {
         printf("%d ", vetor[i]);
     }
