@@ -1,6 +1,6 @@
 
-// Escreva um programa que, dado um vetor de números inteiros, verifique se o vetor é um palíndromo, ou seja, se ele pode ser lido da mesma forma da esquerda
-// para a direita e da direita para a esquerda.
+// Escreva um programa que, dado um vetor v de n números inteiros, reorganize seus elementos de modo que todos os números negativos apareçam 
+// antes dos positivos, mantendo a ordem relativa entre os elementos de cada grupo.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -43,7 +43,7 @@ int main() {
     int *v = malloc(n * sizeof(int));
 
 
-    ler(v, n);
+    ler(v. n);
 
     printf("Vetor original:   ");
     for(int i = 0; i < n; i++) {
