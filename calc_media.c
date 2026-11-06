@@ -60,8 +60,8 @@ float calc_Me()
     printf("Digite a quantidade de exercícios ENTREGUES FORA do prazo (1pt): ");
     scanf("%f", &ex_1pt);
 
-    prinft("Digite a quantidade de exercicios feitos em sala (2pt)");
-    scanf("%f, &ex_2pt");
+    printf("Digite a quantidade de exercicios feitos em sala (2pt): ");
+    scanf("%f", &ex_2pt);
 
     printf("Já houveram desafios realizados? Digite 1 para sim ou 0 para não: ");
     scanf("%f", &hasChallenge);
@@ -88,28 +88,103 @@ float calc_Mf(float Mp, float Me)
     return (2 * Mp * Me) /( Mp + Me);
 }
 
+float calc_P2_necess(float p1, float Me)
+{
+    float Mp_necess, p2;
+
+    if (p1 < 0 || p1 > 10 || Me < 0 || Me > 10)
+    {
+        printf("As notas devem estar entre 0 e 10.\n");
+        return -1;
+    }
+
+    if (calc_Mf((p1 + 20) / 3, Me) < 5)
+    {
+        printf("Mesmo com nota 10 na P2, não é possível atingir média 5.\n");
+        return -1;
+    }
+
+    Mp_necess = (5 * Me) / (2 * Me - 5);
+    p2 = (3 * Mp_necess - p1) / 2;
+    return p2 > 0 ? p2 : 0;
+}
+
+float calc_Me_necess(float Mp)
+{
+    if (Mp < 0 || Mp > 10)
+    {
+        printf("A média das provas deve estar entre 0 e 10.\n");
+        return -1;
+    }
+
+    if (calc_Mf(Mp, 10) < 5)
+    {
+        printf("Mesmo com nota 10 nos exercícios, não é possível atingir média 5.\n");
+        return -1;
+    }
+
+    return (5 * Mp) / (2 * Mp - 5);
+}
+
+float calc_nota_minima()
+{
+    float minimo = 0.0001f, maximo = 10, nota, Mp;
+    int tentativa;
+
+    for (tentativa = 0; tentativa < 100; tentativa++)
+    {
+        nota = (minimo + maximo) / 2;
+        Mp = (nota + (2 * nota)) / 3;
+
+        if (calc_Mf(Mp, nota) >= 5)
+            maximo = nota;
+        else
+            minimo = nota;
+    }
+
+    return maximo;
+}
+
+float calc_rec_necess(float Mf)
+{
+    if (Mf < 0 || Mf > 10)
+    {
+        printf("A média final deve estar entre 0 e 10.\n");
+        return -1;
+    }
+
+    if (Mf >= 5)
+        return 0;
+
+    return 10 - Mf;
+}
+
 int main()
 {
     setlocale(LC_ALL, "pt-BR");
     // SetConsoleOutputCP(65001);
     int opc;
-    int temp_Mp = 0, temp_Me = 0, temp_Mf = 0;
+    int temp_Mp = 0, temp_Me = 0, temp_Mf = 0, temp_nota_necess = 0;
     float Mp = 0, Me = 0, Mf = 0;
+    float nota_necess = 0;
+    char categoria_necess[21] = "";
 
     do
     {
         printf("┌───────────────────────────────────────┐\n");
-        printf("│ " ROXO "CATEGORIA" RESET "            | NOTA           │\n");
+        printf("│ " ROXO "%-20s" RESET " | %-14s │\n", "CATEGORIA", "NOTA");
         printf("├───────────────────────────────────────┤\n");
 
         if (temp_Me)
-            printf("│ " AZUL "Média Exercicios (ME)" RESET " | %.2f          │\n", Me);
+            printf("│ " AZUL "%-20s" RESET " | %14.2f │\n", "Media Exercicios", Me);
         if (temp_Mp)
-            printf("│ " AZUL "Média Provas (Mp)" RESET "     | %.2f         │\n", Mp);
+            printf("│ " AZUL "%-20s" RESET " | %14.2f │\n", "Media Provas (Mp)", Mp);
         if (temp_Mf)
-            printf("│ " AZUL "Média Final (Mf)" RESET "      | %.2f          │\n", Mf);
+            printf("│ " AZUL "%-20s" RESET " | %14.2f │\n", "Media Final (Mf)", Mf);
+        if (temp_nota_necess)
+            printf("│ " AZUL "%-20s" RESET " | %14.2f │\n", categoria_necess, nota_necess);
 
-        if (!temp_Me && !temp_Mp && !temp_Mf)
+        if (!temp_Me && !temp_Mp && !temp_Mf && !temp_nota_necess)
             printf("│ Nenhuma nota calculada ainda...       │\n");
 
         printf("└───────────────────────────────────────┘\n");
@@ -177,6 +252,87 @@ int main()
             printf("\nMédia Final: %.2f\n", Mf);
             break;
 
+        case 4:
+        {
+            float p1, p2_necess;
+            printf("Digite a nota da P1: ");
+            scanf("%f", &p1);
+            printf("Digite a média dos exercícios: ");
+            scanf("%f", &Me);
+            p2_necess = calc_P2_necess(p1, Me);
+            if (p2_necess >= 0)
+            {
+                nota_necess = p2_necess;
+                snprintf(categoria_necess, sizeof(categoria_necess), "Necessaria P2");
+                temp_nota_necess = 1;
+                printf("Nota mínima necessária na P2: %.2f\n", p2_necess);
+            }
+            else
+                temp_nota_necess = 0;
+            break;
+        }
+
+        case 5:
+        {
+            float Me_necess;
+            Mp = calc_Mp();
+            temp_Mp = 1;
+            Me_necess = calc_Me_necess(Mp);
+            if (Me_necess >= 0)
+            {
+                nota_necess = Me_necess;
+                snprintf(categoria_necess, sizeof(categoria_necess), "Necessaria ME");
+                temp_nota_necess = 1;
+                printf("Nota mínima necessária nos exercícios: %.2f\n", Me_necess);
+            }
+            else
+                temp_nota_necess = 0;
+            break;
+        }
+
+        case 6:
+            nota_necess = calc_nota_minima();
+            snprintf(categoria_necess, sizeof(categoria_necess), "Minimo por item");
+            temp_nota_necess = 1;
+            printf("Com a mesma nota em P1, P2 e exercícios, o mínimo é %.2f em cada.\n",
+                   nota_necess);
+            break;
+
+        case 7:
+        {
+            float recuperacao_necess;
+            if (!temp_Mf && temp_Mp && temp_Me)
+            {
+                Mf = calc_Mf(Mp, Me);
+                temp_Mf = 1;
+            }
+
+            if (!temp_Mf)
+            {
+                temp_nota_necess = 0;
+                printf(VERMELHO "Calcule primeiro a média das provas e a média dos exercícios.\n" RESET);
+                break;
+            }
+
+            recuperacao_necess = calc_rec_necess(Mf);
+            if (recuperacao_necess == 0)
+            {
+                temp_nota_necess = 0;
+                printf("Você já atingiu média 5; não precisa de recuperação.\n");
+            }
+            else if (recuperacao_necess > 0)
+            {
+                nota_necess = recuperacao_necess;
+                snprintf(categoria_necess, sizeof(categoria_necess), "Necessaria Rec.");
+                temp_nota_necess = 1;
+                printf("Nota mínima na recuperação, considerando (Mf + Rec) / 2: %.2f\n",
+                       recuperacao_necess);
+            }
+            else
+                temp_nota_necess = 0;
+            break;
+        }
+
         case 0:
             break;
 
@@ -189,4 +345,3 @@ int main()
 
     return EXIT_SUCCESS;
 }
-
