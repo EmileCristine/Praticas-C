@@ -69,5 +69,8 @@ int main() {
     }
     printf("\n");
 
+        free(v);
+
+
     return 0;
 }
