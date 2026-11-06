@@ -1,23 +1,43 @@
 // Escreva um programa que, dado um vetor v de n números inteiros, reorganize seus elementos de modo que todos os números negativos apareçam 
 // antes dos positivos, mantendo a ordem relativa entre os elementos de cada grupo.
+#include <stdio.h>
 
-void ordenar(int v[], int n) { //com bubble sort
-     for(int j = 0; j < n; j++) { // passa pelo vetor e ta executando n vezes independente se ja esta ordenado,
+void trocar(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
-        int trocas = 0; // conta qnts trocas aconteceram, se for 0 ja esta ordenado
+void separarNegativos(int v[], int n) {
+    for(int j = 0; j < n; j++) {
+        int trocas = 0;
 
-
-        for(int i = 0; i < n - j- 1; i++) { // passa pelo vetor analisando
-            if(v[i] > v[i+1]){ // se o da direita for maior que o da esquerda ||
-                                // problema, qnd for a ultima iteracao vai da error pq o vetor vai tentar acessar um indice inexistente, por isso, "n-1"
-                                // mas para otimizar n - j - 1 para diminuir a qtd de iteracoes de , pois n precisa comparar com os ultimo valor q 
-                                //foi ordenado depois de cada chamada, pois ele ja esta no lugar certo, pois essa função ordena primeiro os maiores no fim e vem vindo ao inicio
-                trocar(&v[i], &v[i+1]); // chama a função de troca
-                trocas++; // add uma troca ao contador
+        for(int i = 0; i < n - 1; i++) {
+            // Se o atual for positivo (ou zero) E o próximo for negativo, eles trocam.
+            // Isso joga os negativos para a esquerda sem mudar a ordem entre eles.
+            if(v[i] >= 0 && v[i+1] < 0) {
+                trocar(&v[i], &v[i+1]);
+                trocas++;
             }
         }
-        if (trocas = 0) { //se é verdade,  quer dizer q esta em ordem pois n tem numero a direita que seja maior que o da esquerda, ai para o for pois ja esta ordenado
+        
+        if (trocas == 0) {
             break;
         }
     }
+}
+
+int main() {
+    int vetor[] = {1, -2, 3, -1, 5, -3, 0};
+    int n = sizeof(vetor) / sizeof(vetor[0]);
+
+    separarNegativos(vetor, n);
+
+    printf("Vetor organizado: ");
+    for(int i = 0; i < n; i++) {
+        printf("%d ", vetor[i]);
+    }
+    printf("\n");
+
+    return 0;
 }
