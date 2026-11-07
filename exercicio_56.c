@@ -1,6 +1,3 @@
-// Emile Cristine Gomes Nogueira
-// 26892562
-
 // Escreva uma função int busca(int v[], int l, int r, int k) que retorne TRUE se o elemento k está presente em um vetor ordenado v ou FALSE caso contrário. 
 // A função deverá dividir v em três partes e comparar k com os dois elementos separadores. A partir disso a função deve encontrar k ou decidir em qual das partes ele pode 
 // estar e repetir o processo nesta parte. Como dica para a sua implementação busque inspiração no funcionamento da busca binária.
@@ -8,19 +5,16 @@
 ##include <stdio.h>
 #include <stdlib.h>
 
-#define TRUE 1
-#define FALSE 0
-
 int busca(int v[], int l, int r, int k) {
     while (l <= r) {
         int t1 = l + (r - l) / 3;
         int t2 = r - (r - l) / 3;
 
         if (v[t1] == k) {
-            return TRUE;
+            return 1;
         }
         if (v[t2] == k) {
-            return TRUE;
+            return 1;
         }
 
     
@@ -33,7 +27,7 @@ int busca(int v[], int l, int r, int k) {
             r = t2 - 1;
         }
     }
-    return FALSE;
+    return 0;
 }
 
 void trocar(int *a, int *b){
@@ -84,7 +78,7 @@ int main(void)
 
     int achou = busca(vet, l, r, k);
     
-    if (achou == TRUE)
+    if (achou == 1)
         printf("%d esta no vetor\n", k);
     else
         printf("%d nao esta no vetor\n", k);
