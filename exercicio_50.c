@@ -13,8 +13,8 @@ int buscar(int v[], int n, int valor){
 }
 
 void ler(int v[], int n) {
+    printf("Vetor: ");
     for (int i = 0; i < n; i++) {
-        printf("Digite o valor do elemento %d: ", i);
         scanf("%d", &v[i]);
     }
 }
