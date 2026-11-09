@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-//#include <windows.h>
+#include <windows.h>
 
 #define RESET   "\x1b[0m"
 #define NEGRITO "\x1b[1m"
@@ -162,7 +162,7 @@ float calc_rec_necess(float Mf)
 int main()
 {
     setlocale(LC_ALL, "pt-BR");
-    // SetConsoleOutputCP(65001);
+    SetConsoleOutputCP(65001);
     int opc;
     int temp_Mp = 0, temp_Me = 0, temp_Mf = 0, temp_nota_necess = 0;
     float Mp = 0, Me = 0, Mf = 0;
@@ -188,15 +188,6 @@ int main()
             printf("│ Nenhuma nota calculada ainda...       │\n");
 
         printf("└───────────────────────────────────────┘\n");
-
-        // if (temp_Me)
-        //     printf("Me = %.2f\n", Me);
-        // if (temp_Mp)
-        //     printf("Mp = %.2f\n", Mp);
-        // if (temp_Mf)
-        //     printf("Mf = %.2f\n", Mf);
-        // if (!temp_Me && !temp_Mp && !temp_Mf)
-        //     printf("Nenhuma nota calculada ainda.\n");
 
         printf("\n\n" ROXO "CALCULO DE MÉDIA FINAL " RESET "\n Basta digitar o número da opção.\n\n");
 
