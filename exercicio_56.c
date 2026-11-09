@@ -2,7 +2,7 @@
 // A função deverá dividir v em três partes e comparar k com os dois elementos separadores. A partir disso a função deve encontrar k ou decidir em qual das partes ele pode 
 // estar e repetir o processo nesta parte. Como dica para a sua implementação busque inspiração no funcionamento da busca binária.
 
-##include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 int busca(int v[], int l, int r, int k) {
