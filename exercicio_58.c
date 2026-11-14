@@ -13,10 +13,11 @@ utilizar obrigatoriamente a função do item (a), mesmo que você não a tenha i
 #include <stdlib.h>
 
 #define MAX 10
+#define TRUE 1
+#define FALSE 0
 
-
-void ler(int A[MAX][MAX], int n) {
-    for (int i = 0; i < n; i++) {
+void ler(int A[MAX][MAX], int m, int n) {
+    for (int i = 0; i < m; i++) {
         for (int j = 0; j < n; j++) {
             printf("Valor da posicao [%d][%d]: ", i, j);
             scanf("%d", &A[i][j]);
@@ -24,7 +25,40 @@ void ler(int A[MAX][MAX], int n) {
     }
 }
 
-int elinhacrescente(int A[MAX][MAX], int m, int n);
+int elinhacrescente(int A[MAX][MAX], int m, int n) {
+    for(int i = 0; i < m; i++) 
+        for (int j = 0; j < n - 1; j++)
+            if(A[i][j] > A[i][j + 1])
+                return 0;  
+                
+
+    return 1;
+}
+
+int busca(int v[], int l, int r, int k) {
+    while (l <= r) {
+        int t1 = l + (r - l) / 3;
+        int t2 = r - (r - l) / 3;
+
+        if (v[t1] == k) {
+            return 1;
+        }
+        if (v[t2] == k) {
+            return 1;
+        }
+
+    
+        if (k < v[t1]) {
+            r = t1 - 1; 
+        } else if (k > v[t2]) {
+            l = t2 + 1; 
+        } else {
+            l = t1 + 1; 
+            r = t2 - 1;
+        }
+    }
+    return 0;
+}
 
 int main () {
     int n, m;
@@ -32,11 +66,11 @@ int main () {
     int A[MAX][MAX];
 
     do {
-        printf("Defina o tamanho da matriz: ");
-        scanf("%d", &n);
-    } while (n <= 0);
+        printf("Defina o tamanho da matriz. Ex: 3x2 -> digite 3 2\n");
+        scanf("%d %d", &m, &n);
+    } while (n <= 0 || m <=0);
 
-    ler(A, n);
+    ler(A, m, n);
 
     if(elinhacrescente(A, m, n) == 1) {
         printf("A matriz eh linha-crescente!");
