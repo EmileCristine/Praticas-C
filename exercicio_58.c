@@ -14,16 +14,35 @@ utilizar obrigatoriamente a função do item (a), mesmo que você não a tenha i
 
 #define MAX 10
 
+
+void ler(int A[MAX][MAX], int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("Valor da posicao [%d][%d]: ", i, j);
+            scanf("%d", &A[i][j]);
+        }
+    }
+}
+
 int elinhacrescente(int A[MAX][MAX], int m, int n);
 
 int main () {
-    int n;
+    int n, m;
+
+    int A[MAX][MAX];
 
     do {
-        printf("Digite o tamanho do vetor");
+        printf("Defina o tamanho da matriz: ");
+        scanf("%d", &n);
     } while (n <= 0);
 
-    int *v = malloc (n * sizeof(int));
+    ler(A, n);
 
-    
+    if(elinhacrescente(A, m, n) == 1) {
+        printf("A matriz eh linha-crescente!");
+    } else {
+        printf("A matriz nao eh linha-crescente!");
+    }
+
+    return EXIT_SUCCESS;
 }
