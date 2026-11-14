@@ -35,31 +35,6 @@ int elinhacrescente(int A[MAX][MAX], int m, int n) {
     return 1;
 }
 
-int busca(int v[], int l, int r, int k) {
-    while (l <= r) {
-        int t1 = l + (r - l) / 3;
-        int t2 = r - (r - l) / 3;
-
-        if (v[t1] == k) {
-            return 1;
-        }
-        if (v[t2] == k) {
-            return 1;
-        }
-
-    
-        if (k < v[t1]) {
-            r = t1 - 1; 
-        } else if (k > v[t2]) {
-            l = t2 + 1; 
-        } else {
-            l = t1 + 1; 
-            r = t2 - 1;
-        }
-    }
-    return 0;
-}
-
 int main () {
     int n, m;
 
