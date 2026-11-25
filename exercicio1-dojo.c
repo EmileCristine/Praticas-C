@@ -2,32 +2,37 @@
 // Um número é considerado um mínimo local quando é estritamente menor que seus dois vizinhos imediatos (o elemento anterior e o próximo).
 
 #include <stdio.h>
-#include <sdlib.h>
+#include <stdlib.h>
 
-void ler (int v[], n) {
-  for (int i = 0, i < n; i++) {
-    scanf("%d", v[i]);
-  }
-
-void minlocal (int v[], int n) {
-  for (int i = 1; i < n; i++) {
-    if (v[i - 1 > v[i] && v [i + 1] > v[i]) {
-      printf("%d", v[i]);
+void ler(int v[], int n) {
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &v[i]);
     }
-  }
+}
+
+void minlocal(int v[], int n) {
+    for (int i = 1; i < n - 1; i++) {
+        if (v[i - 1] > v[i] && v[i + 1] > v[i]) {
+            printf("Indice: %d\n", i);
+            printf("N: %d\n", v[i]);
+        }
+    }
+    printf("\n");
 }
 
 int main() {
-  int n;
+    int n;
+    do {
+        printf("Digite o tamanho do vetor: ");
+        scanf("%d", &n);
+    } while (n <= 0);
 
-  do {
-    printf("Digite o tamanho do vetor: ");
-    scanf("%d", n);
-  } while (n <= 0);
+    printf("Digite os elementos do vetor:\n");
+    ler(v, n);
 
-  int v = malloc (n * sizeof(int));
+    printf("Indices dos minimos locais: ");
+    minlocal(v, n);
 
-  ler (v, n);
-  minlocal(v, n);
-  
+    free(v);
+    return 0;
 }
